@@ -2,7 +2,6 @@
 package school;
 import java.util.ArrayList;
 public class Course {
-    public static final int numPeriods = 4;
     enum Type {
         Math,Science,English,History,Language,Elective,PE
     }
@@ -123,10 +122,6 @@ public class Course {
     public int getNumStudents()
     {
         return(students.size());
-    }
-    public Teacher getTeacher()
-    {
-        return(theTeacher);
     }
     public static void printNames()
     {

@@ -36,8 +36,5 @@ public class School {
         Teacher.printNames();
         
         hudson.printStudentsNames();
-        ann.printTeachersNames();
-//        ann.getGPA(biology);
     }
 }
-

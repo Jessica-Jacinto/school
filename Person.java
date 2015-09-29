@@ -73,12 +73,35 @@ public class Person {
     {
         return(name);
     }    
-        public static void printNames()
+    public void setGender(Gender _gender)
+    {
+        gender = _gender;
+    }
+    public Gender getGender()
+    {
+        return(gender);
+    }  
+    public static void printNames()
     {
         System.out.println("===printNames===");
+        for (int index=0;index<people.size();index++)
+        {
+                System.out.println(people.get(index).getName());
+        }        
+    }
+    public static void printNames(Gender _gender)
+    {
+        System.out.println(
+        "===printNamesOfGender=== " + _gender);
         for (Person temp : people)
         {
+            if (temp.gender == _gender)
                 System.out.println(temp.getName());
-        }        
-    }   
+        }
+             
+    }    
+    public String toString()
+    {
+        return(name + " " + gender + " " + weight);
+    }
 }
