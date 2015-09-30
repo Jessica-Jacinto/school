@@ -23,14 +23,14 @@ public class Student extends Person{
     
     }
     
-    public boolean addCourse(Course _course)
+    public boolean addCourse(Course _course,double _gradeScore)
     {
         if(!setCourseOK(_course))
             return(false);
         if(!_course.setStudentOK(this))
             return(false);
         _course.setStudentDoIt(this);
-        setCourseDoIt(_course);
+        setCourseDoIt(_course,_gradeScore);
         return true;
     }
     
@@ -42,9 +42,10 @@ public class Student extends Person{
             return(false);
         return(true);
     }
-    public void setCourseDoIt(Course _course)
+    public void setCourseDoIt(Course _course, double _gradeScore)
     {
         courses[_course.getPeriod() - 1] = _course;
+        gradeScore[_course.getPeriod() - 1] = _gradeScore;
     }
     
     public void setGradeLevel(int _gradeLevel)
@@ -55,10 +56,22 @@ public class Student extends Person{
     {
         return(gradeLevel);
     }
-//    public double getGPA(Course _course)
-//    {
-//        return(gradeScore[_course.getPeriod()-1]);
-//    }
+    public double getGPA()
+    {
+        double total = 0;
+        int numCourses = 0;
+        for(int index = 0;index < Course.numPeriods;index++)
+        {
+            if (courses[index] != null)
+            {
+                total += gradeScore[index]; 
+                numCourses++;
+            }
+        }
+       if(numCourses == 0)
+        return(0.0);
+       return(total/numCourses);
+    }
     public static void printNames()
     {
         System.out.println("==printNamesStudents===");
@@ -66,6 +79,20 @@ public class Student extends Person{
         {
             if(temp instanceof Student)
             System.out.println(temp.getName());
+        }
+    }  
+    public static void printNamesGPAGreaterThan(double _gpa)
+    {
+        System.out.println("==printNamesGPA > "+ _gpa);
+        for(Person temp : people)
+        {
+            
+            if(temp instanceof Student)
+            {
+                if(((Student)temp).getGPA() > _gpa)
+                System.out.println(temp.getName());
+            }
+            
         }
     }  
         public void printTeachersNames()

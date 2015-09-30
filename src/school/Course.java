@@ -40,13 +40,13 @@ public class Course {
     }   
 
 
-    public boolean addStudent(Student _student)
+    public boolean addStudent(Student _student,double _gradeScore)
     {
         if (!setStudentOK(_student))
             return(false);
         if (!_student.setCourseOK(this))
             return(false);
-        _student.setCourseDoIt(this);
+        _student.setCourseDoIt(this,_gradeScore);
         setStudentDoIt(_student);
         return(true);
     }  
